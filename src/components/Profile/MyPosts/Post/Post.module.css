@@ -1,0 +1,8 @@
+.item{
+    color: yellow;
+  } 
+
+  .item img{
+    width: 65px;
+    border-radius: 50%;
+  }
