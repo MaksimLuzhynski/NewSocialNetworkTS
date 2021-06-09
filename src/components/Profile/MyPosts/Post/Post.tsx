@@ -1,12 +1,17 @@
 import React from 'react';
 import classes from './Post.module.css';
 
-export function Post() {
+type PostPropsType={
+    message:string
+    likeCounter:string
+}
+
+export function Post(props:PostPropsType) {
     return (
         <div className={classes.item}>
             <img src='https://photopict.ru/wp-content/uploads/2018/12/prikol-nye-kartinki-na-avatarku-dlya-muzhchin-35-foto-26.jpg' />
-            post1
-            <span>like</span>
+            {props.message}
+           <div>{props.likeCounter}</div>
         </div>
     )
 }
