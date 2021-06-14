@@ -12,19 +12,19 @@ export function MyPosts() {
                 <div>
                     <Post
                         message="Hey!"
-                        likeCounter="0"
+                        likeCounter={0}
                     />
                     <Post
                         message="How are you?"
-                        likeCounter="15"
+                        likeCounter={15}
                     />
                     <Post
                         message="Hellow"
-                        likeCounter="3"
+                        likeCounter={3}
                     />
                     <Post
                         message="Yo!!!"
-                        likeCounter="34"
+                        likeCounter={37}
                     />
                 </div>
             </div>
