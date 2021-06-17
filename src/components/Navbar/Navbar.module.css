@@ -3,6 +3,11 @@
     background-color: chocolate;
   }
 
-  .item{
-    color: whitesmoke;
+  .item a{
+    color:chartreuse;
+    text-decoration: none;
+  }
+
+  .item a.active{
+    color: crimson;
   }

@@ -1,15 +1,15 @@
 import React from 'react';
-import { isTemplateExpression } from 'typescript';
+import { NavLink } from 'react-router-dom';
 import classes from './Navbar.module.css'
 
 export function Navbar() {
     return (
         <nav className={classes.nav}>
-            <div className={classes.item}><a href="/profile">Profile</a></div>
-            <div className={classes.item}><a href="/dialogs">Messanges</a></div>
-            <div className={classes.item}><a href="/news">News</a></div>
-            <div className={classes.item}><a href="/music">Music</a></div>
-            <div className={classes.item}><a href="/settings">Settings</a></div>
+            <div className={classes.item}><NavLink to="/profile" activeClassName={classes.active}>Profile</NavLink></div>
+            <div className={classes.item}><NavLink to="/dialogs" activeClassName={classes.active}>Messanges</NavLink></div>
+            <div className={classes.item}><NavLink to="/news" activeClassName={classes.active}>News</NavLink></div>
+            <div className={classes.item}><NavLink to="/music" activeClassName={classes.active}>Music</NavLink></div>
+            <div className={classes.item}><NavLink to="/settings" activeClassName={classes.active}>Settings</NavLink></div>
         </nav>
     )
 }
