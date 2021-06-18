@@ -2,31 +2,44 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import classes from './Dialogs.module.css'
 
+type DialogItemPropsType = {
+    name: string
+    id: number
+}
+
+type MessagePropsType = {
+    message: string
+}
+
+export function DialogItem(props: DialogItemPropsType) {
+    return (
+        <div className={classes.dialog}>
+            <NavLink to={"/dialogs/" + props.id} activeClassName={classes.active}> {props.name}</NavLink>
+        </div>)
+}
+
+export function Message(props: MessagePropsType) {
+    return (
+        <div className={classes.message}> {props.message}  </div>
+    )
+}
+
 export function Dialogs() {
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItem}>
-                <div className={classes.dialog + ' ' + classes.active}> {/* очень важно поставить пробел между кавычками */}
-                    <NavLink to="/dialogs/1"> Max</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/2"> Ales</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/3"> Bob</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/4"> Marta</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/5">  Victor</NavLink>
-                </div>
+                <DialogItem name="Max" id={1} />
+                <DialogItem name="Ales" id={2} />
+                <DialogItem name="Bob" id={3} />
+                <DialogItem name="Marta" id={4} />
+                <DialogItem name="Victor" id={5} />
             </div>
             <div className={classes.messages}>
-                <div className={classes.message}> hi  </div>
-                <div className={classes.message}> feerfe  </div>
-                <div className={classes.message}> Maefefx  </div>
-                <div className={classes.message}> Mefefax  </div>
+                <Message message="Hi"/>
+                <Message message="How are you?"/>
+                <Message message="Yo!"/>
+                <Message message="Hellow"/>
+                <Message message="Hey"/>
             </div>
         </div>)
 }

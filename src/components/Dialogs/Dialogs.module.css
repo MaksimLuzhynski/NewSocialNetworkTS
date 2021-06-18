@@ -7,8 +7,8 @@
     padding: 10px;
 }
 
-.dialogsItem .active {
-    color:fuchsia
+.dialogsItem a.active {
+    color:rgb(57, 219, 17)
 }
 
 /* .dialog{
