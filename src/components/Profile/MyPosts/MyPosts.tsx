@@ -14,6 +14,7 @@ let PostData: Array<PostDataType> = [
     { id: 2, message: "Hellow", likeCounter: 3 },
     { id: 3, message: "Yo!!!", likeCounter: 37 },
 ]
+//типизация???
 let postsElements = PostData.map(post => <Post message={post.message} likeCounter={post.likeCounter} />)
 
 export function MyPosts() {
