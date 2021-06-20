@@ -14,8 +14,8 @@ type DialogsDataType = {
     name: string
 }
 type MessageDataType = {
-    id:number
-    name:string
+    id: number
+    name: string
 }
 
 export function DialogItem(props: DialogItemPropsType) {
@@ -39,30 +39,25 @@ let DialogsData: Array<DialogsDataType> = [
     { id: 5, name: "Victor" },
 ]
 
-let MessageData:Array<MessageDataType> = [
+let MessageData: Array<MessageDataType> = [
     { id: 0, name: "Hi" },
     { id: 1, name: "How are you?" },
     { id: 2, name: "Yo!" },
     { id: 3, name: "Hellow" },
     { id: 4, name: "Hey" },
 ]
-// не забудь про типизацию
+
+let dialogsElements = DialogsData.map(dialog => <DialogItem name={dialog.name} id={dialog.id} />)
+let messagesElements = MessageData.map(messages => <Message message={messages.name} />)
+
 export function Dialogs() {
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItem}>
-                <DialogItem name={DialogsData[0].name} id={DialogsData[0].id} />
-                <DialogItem name={DialogsData[1].name} id={DialogsData[1].id} />
-                <DialogItem name={DialogsData[2].name} id={DialogsData[2].id} />
-                <DialogItem name={DialogsData[3].name} id={DialogsData[3].id} />
-                <DialogItem name={DialogsData[4].name} id={DialogsData[4].id} />
+                {dialogsElements}
             </div>
             <div className={classes.messages}>
-                <Message message={MessageData[0].name} />
-                <Message message={MessageData[1].name} />
-                <Message message={MessageData[2].name} />
-                <Message message={MessageData[3].name} />
-                <Message message={MessageData[4].name} />
+                {messagesElements}
             </div>
         </div>)
 }
