@@ -1,16 +1,16 @@
 import React from 'react';
-import { PostDataType } from '../../../index';
+import { PostsType } from '../../../redux/state';
 import classes from './MyPosts.module.css';
 import { Post } from './Post/Post';
 
 type MyPostsPropsType={
-    PostData:Array<PostDataType>
+    posts:Array<PostsType>
 }
 
 export function MyPosts(props:MyPostsPropsType) {
     
     //типизация???
-    let postsElements = props.PostData.map(post => <Post message={post.message} likeCounter={post.likeCounter} />)
+    let postsElements = props.posts.map(post => <Post message={post.message} likeCounter={post.likeCounter} />)
 
     return (
         <div className={classes.postsBlock}>
