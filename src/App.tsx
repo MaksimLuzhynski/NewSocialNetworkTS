@@ -8,16 +8,23 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
+import { DialogsDataType, MessageDataType, PostDataType } from './index';
 
-function App() {
+type AppPropsType = {
+  PostData: Array<PostDataType>
+  DialogsData: Array<DialogsDataType>
+  MessageData: Array<MessageDataType> 
+}
+
+function App(props: AppPropsType) {
   return (
     <BrowserRouter>
       <div className="app-wrapper">
         <Header />
         <Navbar />
         <div className="app-wrapper-content">
-          <Route path='/profile' render={() => <Profile />}></Route>
-          <Route path='/dialogs' render={() => <Dialogs />}></Route>
+          <Route path='/profile' render={() => <Profile PostData={props.PostData} />}></Route>
+          <Route path='/dialogs' render={() => <Dialogs DialogsData={props.DialogsData} MessageData={props.MessageData}/>}></Route>
           <Route path='/news' render={() => <News />}></Route>
           <Route path='/music' render={() => <Music />}></Route>
           <Route path='/settings' render={() => <Settings />}></Route>
