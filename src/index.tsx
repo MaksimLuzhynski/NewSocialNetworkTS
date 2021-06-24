@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {state} from './redux/state'
+import {AddNewPost, state} from './redux/state'
 
+// AddPost();
 
 ReactDOM.render(
   <React.StrictMode>
@@ -12,6 +13,7 @@ ReactDOM.render(
       posts={state.profilePage.posts}
       dialogs={state.messagesPage.dialogs}
       messages={state.messagesPage.messages}
+      AddNewPost={AddNewPost}
     />
   </React.StrictMode>,
   document.getElementById('root')

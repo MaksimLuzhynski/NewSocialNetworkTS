@@ -4,34 +4,28 @@ export type PostsType = {
     message: string
     likeCounter: number
 }
-
 export type DialogsType = {
     id: number
     name: string
 }
-
 export type MessagesType = {
     id: number
     name: string
 }
-
 export type ProfilePageType = {
     posts: Array<PostsType>
 }
-
 export type MessagePageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
 
 }
-
 export type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagePageType
 }
 
-
-export let state: StateType = {
+export const state: StateType = {
 
     profilePage: {
         posts: [
@@ -58,4 +52,13 @@ export let state: StateType = {
             { id: 4, name: "Hey" },
         ],
     }
+}
+
+export let AddNewPost = (text: string) => {
+    const newPost: PostsType = {
+        id: 5,
+        message: text,
+        likeCounter: 0,
+    }
+    state.profilePage.posts.push(newPost);
 }

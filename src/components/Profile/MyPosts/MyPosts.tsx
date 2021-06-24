@@ -5,6 +5,7 @@ import { Post } from './Post/Post';
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
+    AddNewPost:any
 }
 
 export function MyPosts(props: MyPostsPropsType) {
@@ -16,7 +17,7 @@ export function MyPosts(props: MyPostsPropsType) {
     let addPost = () => {
         if (newPostElement.current) {
             let text = newPostElement.current.value;
-            alert(text);
+            props.AddNewPost(text);
         }
     }
 
