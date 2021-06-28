@@ -18,6 +18,7 @@ export function MyPosts(props: MyPostsPropsType) {
         if (newPostElement.current) {
             let text = newPostElement.current.value;
             props.AddNewPost(text);
+            newPostElement.current.value="";
         }
     }
 
