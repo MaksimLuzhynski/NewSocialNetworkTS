@@ -5,7 +5,9 @@ import { Post } from './Post/Post';
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
-    AddNewPost:any
+    AddNewPost: () => void
+    newPostText:string
+    UpdateNewPostText: (newText: string) => void
 }
 
 export function MyPosts(props: MyPostsPropsType) {
@@ -16,9 +18,14 @@ export function MyPosts(props: MyPostsPropsType) {
 
     let addPost = () => {
         if (newPostElement.current) {
+            props.AddNewPost();
+        }
+    }
+
+    let onPostChange=()=>{
+        if (newPostElement.current) {
             let text = newPostElement.current.value;
-            props.AddNewPost(text);
-            newPostElement.current.value="";
+            props.UpdateNewPostText(text);
         }
     }
 
@@ -27,7 +34,7 @@ export function MyPosts(props: MyPostsPropsType) {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
