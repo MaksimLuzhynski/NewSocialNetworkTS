@@ -1,4 +1,3 @@
-import { rerenderIntireTree } from "../render"
 
 export type PostsType = {
     id: number
@@ -26,6 +25,11 @@ export type StateType = {
     profilePage: ProfilePageType
     messagesPage: MessagePageType
 }
+
+let rerenderIntireTree = (state: StateType) => {
+    console.log("State changed");
+};
+
 
 export const state: StateType = {
 
@@ -57,18 +61,22 @@ export const state: StateType = {
     }
 }
 
-export let AddNewPost = () => {
+export const AddNewPost = () => {
     const newPost: PostsType = {
         id: 5,
         message: state.profilePage.newPostText,
         likeCounter: 0,
     }
     state.profilePage.posts.push(newPost);
-    state.profilePage.newPostText="";
+    state.profilePage.newPostText = "";
     rerenderIntireTree(state);
 }
 
-export let UpdateNewPostText = (newText: string) => {
+export const UpdateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText;
     rerenderIntireTree(state);
+}
+
+export const subscribe=(observer:any)=>{
+    rerenderIntireTree=observer;
 }
