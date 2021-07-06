@@ -1,30 +1,29 @@
 import React from 'react';
-import { state, StateType, subscribe } from './redux/state';
+import { store, StateType } from './redux/state';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { AddNewPost} from './redux/state'
-import { UpdateNewPostText} from './redux/state'
 
-let rerenderIntireTree = (state:StateType) => {
-  
+let rerenderIntireTree = () => {
+
   ReactDOM.render(
     <React.StrictMode>
       <App
-        posts={state.profilePage.posts}
-        newPostText={state.profilePage.newPostText}
-        dialogs={state.messagesPage.dialogs}
-        messages={state.messagesPage.messages}
-        AddNewPost={AddNewPost}
-        UpdateNewPostText={UpdateNewPostText}
+        posts={store._state.profilePage.posts}
+        newPostText={store._state.profilePage.newPostText}
+        dialogs={store._state.messagesPage.dialogs}
+        messages={store._state.messagesPage.messages}
+        AddNewPost={store.AddNewPost.bind(store)}
+        UpdateNewPostText={store.UpdateNewPostText.bind(store)}
       />
     </React.StrictMode>,
     document.getElementById('root')
   );
 }
 
-rerenderIntireTree(state);
+rerenderIntireTree();
 
-subscribe(rerenderIntireTree);
+store.subscribe(rerenderIntireTree);
+
 
 
