@@ -30,8 +30,18 @@ export type StoreType = {
     AddNewPost: () => void
     UpdateNewPostText: (newText: string) => void
     subscribe: (observer: () => void) => void
-    rerenderIntireTree: () => void
+    _callSubscriber: () => void
     getState: () => StateType
+    dispatch: (action: ActionsTypes) => void
+}
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+type UpdateNewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
 }
 
 export let store: StoreType = {
@@ -63,6 +73,17 @@ export let store: StoreType = {
             ],
         }
     },
+    _callSubscriber() {
+        console.log("State changed");
+    },
+
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+    getState() {
+        return this._state;
+    },
+
     AddNewPost() {
         const newPost: PostsType = {
             id: 5,
@@ -71,19 +92,26 @@ export let store: StoreType = {
         }
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = "";
-        this.rerenderIntireTree();
+        this._callSubscriber();
     },
     UpdateNewPostText(newText: string) {
         this._state.profilePage.newPostText = newText;
-        this.rerenderIntireTree();
+        this._callSubscriber();
     },
-    subscribe(observer) {
-        this.rerenderIntireTree = observer;
-    },
-    rerenderIntireTree() {
-        console.log("State changed");
-    },
-    getState() {
-        return this._state;
+
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostsType = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                likeCounter: 0,
+            }
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = "";
+            this._callSubscriber();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber();
+        }
     }
 }

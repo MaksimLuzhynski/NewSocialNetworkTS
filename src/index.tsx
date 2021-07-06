@@ -1,5 +1,5 @@
 import React from 'react';
-import { store, StateType } from './redux/state';
+import { store } from './redux/state';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -13,8 +13,7 @@ let rerenderIntireTree = () => {
         newPostText={store._state.profilePage.newPostText}
         dialogs={store._state.messagesPage.dialogs}
         messages={store._state.messagesPage.messages}
-        AddNewPost={store.AddNewPost.bind(store)}
-        UpdateNewPostText={store.UpdateNewPostText.bind(store)}
+        dispatch={store.dispatch.bind(store)}
       />
     </React.StrictMode>,
     document.getElementById('root')

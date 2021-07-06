@@ -8,15 +8,14 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
-import { DialogsType, MessagesType, PostsType } from './redux/state';
+import { ActionsTypes, DialogsType, MessagesType, PostsType } from './redux/state';
 
 type AppPropsType = {
   posts: Array<PostsType>
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>
-  AddNewPost: () => void
   newPostText: string
-  UpdateNewPostText: (newText: string) => void
+  dispatch:(action:ActionsTypes)=>void
 }
 
 function App(props: AppPropsType) {
@@ -29,9 +28,8 @@ function App(props: AppPropsType) {
           <Route path='/profile' render={() =>
             <Profile
               posts={props.posts}
-              AddNewPost={props.AddNewPost}
+              dispatch={props.dispatch}
               newPostText={props.newPostText}
-              UpdateNewPostText={props.UpdateNewPostText}
             />}>
           </Route>
           <Route path='/dialogs' render={() =>
