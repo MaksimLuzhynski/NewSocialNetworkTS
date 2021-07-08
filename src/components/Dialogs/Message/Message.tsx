@@ -7,6 +7,6 @@ type MessagePropsType = {
 
 export function Message(props: MessagePropsType) {
     return (
-        <div className={classes.message}> {props.message}  </div>
+        <div className={classes.message}> {props.message}</div>
     )
 }

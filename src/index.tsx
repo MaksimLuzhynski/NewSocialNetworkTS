@@ -13,6 +13,9 @@ let rerenderIntireTree = () => {
         newPostText={store._state.profilePage.newPostText}
         dialogs={store._state.messagesPage.dialogs}
         messages={store._state.messagesPage.messages}
+        
+        newMessageText={store._state.messagesPage.newMessageText}
+
         dispatch={store.dispatch.bind(store)}
       />
     </React.StrictMode>,

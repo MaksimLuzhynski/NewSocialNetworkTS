@@ -15,6 +15,7 @@ type AppPropsType = {
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>
   newPostText: string
+  newMessageText:string
   dispatch:(action:ActionsTypes)=>void
 }
 
@@ -36,6 +37,8 @@ function App(props: AppPropsType) {
             <Dialogs
               dialogs={props.dialogs}
               MessageData={props.messages}
+              newMessageText={props.newMessageText}
+              dispatch={props.dispatch}
             />}>
           </Route>
           <Route path='/news' render={() => <News />}></Route>
