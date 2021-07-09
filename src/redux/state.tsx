@@ -1,3 +1,5 @@
+import dialogsReducer from "./dialogs-reducer"
+import profileReducer from "./profile-reducer"
 
 export type PostsType = {
     id: number
@@ -34,42 +36,32 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType|AddMessageActionType|UpdateNewMessageTextActionType
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType | AddMessageActionType | UpdateNewMessageTextActionType
 
-type AddPostActionType = {
+export type AddPostActionType = {
     type: 'ADD-POST'
 }
-type UpdateNewPostTextActionType = {
+export type UpdateNewPostTextActionType = {
     type: 'UPDATE-NEW-POST-TEXT'
     newText: string
 }
-type AddMessageActionType = {
+export type AddMessageActionType = {
     type: 'ADD-MESSAGE'
 }
-type UpdateNewMessageTextActionType = {
+export type UpdateNewMessageTextActionType = {
     type: 'UPDATE-NEW-MESSAGE-TEXT'
     newMessage: string
 }
 
-
-export const addPostActionCreator = (): AddPostActionType => (
-    { type: 'ADD-POST' }
-)
-export const updateNewPostTextActionCreator = (text: string): UpdateNewPostTextActionType => (
-    {
-        type: 'UPDATE-NEW-POST-TEXT',
-        newText: text
-    }
-)
-export const addMessageActionCreator = (): AddMessageActionType => (
-    { type: 'ADD-MESSAGE' }
-)
-export const updateNewMessageTextActionCreator = (text: string): UpdateNewMessageTextActionType => (
-    {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newMessage: text
-    }
-)
+// export const addMessageActionCreator = (): AddMessageActionType => (
+//     { type: 'ADD-MESSAGE' }
+// )
+// export const updateNewMessageTextActionCreator = (text: string): UpdateNewMessageTextActionType => (
+//     {
+//         type: 'UPDATE-NEW-MESSAGE-TEXT',
+//         newMessage: text
+//     }
+// )
 
 export let store: StoreType = {
     _state: {
@@ -112,54 +104,11 @@ export let store: StoreType = {
         return this._state;
     },
 
-    // AddNewPost() {
-    //     const newPost: PostsType = {
-    //         id: 5,
-    //         message: this._state.profilePage.newPostText,
-    //         likeCounter: 0,
-    //     }
-    //     this._state.profilePage.posts.push(newPost);
-    //     this._state.profilePage.newPostText = "";
-    //     this._callSubscriber();
-    // },
-    // UpdateNewPostText(newText: string) {
-    //     this._state.profilePage.newPostText = newText;
-    //     this._callSubscriber();
-    // },
-    // AddNewMessage(){
-    //     const newMessage={
-    //         id:5,
-    //         name: this._state.messagesPage.newMessageText,
-    //     }
-    // },
-
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostsType = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likeCounter: 0,
-            }
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._callSubscriber();
-        }
-        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber();
-        }
-        else if (action.type === 'ADD-MESSAGE') {
-            const newMessage = {
-                id: 5,
-                name: this._state.messagesPage.newMessageText,
-            }
-            this._state.messagesPage.messages.push(newMessage);
-            this._state.messagesPage.newMessageText = "";
-            this._callSubscriber();
-        }
-        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.messagesPage.newMessageText = action.newMessage;
-            this._callSubscriber();
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.messagesPage = dialogsReducer(this._state.messagesPage, action)
+
+        this._callSubscriber();
     }
 }
