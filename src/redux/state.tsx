@@ -53,16 +53,6 @@ export type UpdateNewMessageTextActionType = {
     newMessage: string
 }
 
-// export const addMessageActionCreator = (): AddMessageActionType => (
-//     { type: 'ADD-MESSAGE' }
-// )
-// export const updateNewMessageTextActionCreator = (text: string): UpdateNewMessageTextActionType => (
-//     {
-//         type: 'UPDATE-NEW-MESSAGE-TEXT',
-//         newMessage: text
-//     }
-// )
-
 export let store: StoreType = {
     _state: {
         profilePage: {
