@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import { Dialogs } from './components/Dialogs/Dialogs';
 import { Header } from './components/Header/Header';
 import { Navbar } from './components/Navbar/Navbar';
 import { Profile } from './components/Profile/Profile';
@@ -9,14 +8,15 @@ import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 import { ActionsTypes, DialogsType, MessagesType, PostsType } from './redux/state';
+import { DialogsContainer } from './components/Dialogs/DialogItemContainer';
 
 type AppPropsType = {
   posts: Array<PostsType>
   dialogs: Array<DialogsType>
   messages: Array<MessagesType>
   newPostText: string
-  newMessageText:string
-  dispatch:(action:ActionsTypes)=>void
+  newMessageText: string
+  dispatch: (action: ActionsTypes) => void
 }
 
 function App(props: AppPropsType) {
@@ -34,7 +34,7 @@ function App(props: AppPropsType) {
             />}>
           </Route>
           <Route path='/dialogs' render={() =>
-            <Dialogs
+            <DialogsContainer
               dialogs={props.dialogs}
               MessageData={props.messages}
               newMessageText={props.newMessageText}
