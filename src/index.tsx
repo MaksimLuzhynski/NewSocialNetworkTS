@@ -3,21 +3,18 @@ import store from './redux/redux-store';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from './StoreContext';
 
 let rerenderIntireTree = () => {
 
   ReactDOM.render(
     <React.StrictMode>
-      <App
-        posts={store.getState().profilePage.posts}
-        newPostText={store.getState().profilePage.newPostText}
-
-        dialogs={store.getState().messagesPage.dialogs}
-        messages={store.getState().messagesPage.messages}
-        newMessageText={store.getState().messagesPage.newMessageText}
-
-        dispatch={store.dispatch.bind(store)}
-      />
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
   );
