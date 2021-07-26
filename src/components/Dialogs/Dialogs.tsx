@@ -19,10 +19,12 @@ export function Dialogs(props: DialogsPropsType) {
         <DialogItem
             name={dialog.name}
             id={dialog.id}
+            key={dialog.id}
         />)
     let messagesElements = props.MessageData.map(messages =>
         <Message
             message={messages.name}
+            key={messages.id}
         />)
 
     let onMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {

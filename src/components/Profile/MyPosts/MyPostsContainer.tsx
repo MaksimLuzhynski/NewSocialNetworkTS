@@ -39,7 +39,7 @@ const mapStateToProps = (state: AppStateType) => {
 const mapDispatchToProps = (dispatch: any) => {                  //ТИПИЗИРОВАТЬ !!!
     return {
         addPost: () => { dispatch(addPostActionCreator()) },
-        updateNewPost: (text: string) => { (updateNewPostTextActionCreator(text)) },
+        updateNewPost: (text: string) => { dispatch((updateNewPostTextActionCreator(text))) },
     }
 }
 

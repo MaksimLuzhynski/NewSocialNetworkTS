@@ -16,10 +16,17 @@ export function MyPosts(props: MyPostsPropsType) {
         <Post
             message={post.message}
             likeCounter={post.likeCounter}
+            key={post.id}
         />)
 
     let onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+
+    
+
+
         let text = event.currentTarget.value;
+        console.log(text);
+        
         props.updateNewPost(text);
     }
 

@@ -31,13 +31,13 @@ import { Dialogs } from './Dialogs'
 
 
 ////////////////////////////////////////
-type MapStateToPropsType = {
+// type MapStateToPropsType = {
 
-}                                                                   // ДОДЕЛАТЬ !!!
-type MapDispatchToPropsType = {
-    addMessage: () => void
-    onMessageChange: (text: string) => void
-}
+// }                                                                   // ДОДЕЛАТЬ !!!
+// type MapDispatchToPropsType = {
+//     addMessage: () => void
+//     onMessageChange: (text: string) => void
+// }
 ////////////////////////////////////
 
 
@@ -52,7 +52,7 @@ const mapStateToProps = (state: AppStateType) => {
 const mapDispatchToProps = (dispatch: Dispatch, text: any) => {              //ТИПИЗИРОВАТЬ !!!
     return {
         addMessage: () => { dispatch(addMessageActionCreator()) },
-        onMessageChange: () => { dispatch(updateNewMessageTextActionCreator(text)) }
+        onMessageChange: (text:any) => { dispatch(updateNewMessageTextActionCreator(text)) }
     }
 }
 
