@@ -1,0 +1,12 @@
+/* .item{
+    color: yellow;
+  }  */
+
+  .item img{
+    width: 65px;
+    border-radius: 50%;
+  }
+
+  .userPhoto{
+      padding: 10px;
+  }
