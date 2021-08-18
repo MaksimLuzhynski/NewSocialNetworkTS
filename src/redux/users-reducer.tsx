@@ -4,10 +4,10 @@ export type UsersPageType = {
 export type UsersType = {
     id: number
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: LocationType
-    photoUrl: string
+    photos: any                                        //ТИПИЗИРОВАТЬ!!!
 }
 export type LocationType = {
     country: string
@@ -36,7 +36,6 @@ let initialState: initialStateType = {
 
 const usersReducer = (state: UsersPageType = initialState, action: FollowUserActionType | UnfollowUserActionType|SetUsersActionType) => {
 
-    debugger
     switch (action.type) {
 
         case 'FOLLOW-USER':
