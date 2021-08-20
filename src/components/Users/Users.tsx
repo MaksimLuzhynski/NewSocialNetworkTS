@@ -6,49 +6,51 @@ import userPhoto from '../../assets/images/user.png';
 
 type UsersPropsType = {
     users: Array<UsersType>
-    follow: (userId: number) => void                     //?????
-    unfollow: (userId: number) => void                     //?????
+    follow: (userId: number) => void                 
+    unfollow: (userId: number) => void               
     setUsers: (users: Array<UsersType>) => void
 }
 
-export function Users(props: UsersPropsType) {
+export class Users extends React.Component<UsersPropsType> {
 
-    if (props.users.length === 0) {
+    constructor(props: UsersPropsType) {
+        super(props);
 
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            props.setUsers(response.data.items)
+            this.props.setUsers(response.data.items)
         });
     }
 
-    return (
-        <div className={classes.item}>
-            {
-                props.users.map(item => <div key={item.id} className={classes.userPhoto}>
-                    <span>
-                        <div>
-                            <img src={item.photos.small != null ? item.photos.small : userPhoto} />
-                        </div>
-                        <div>
-                            {item.followed
-                                ? <button onClick={() => { props.unfollow(item.id) }}>Follow</button>
-                                : <button onClick={() => { props.follow(item.id) }}>Unfollow</button>}
-                        </div>
-                    </span>
+    render() {
 
-                    <span>
+        return (
+            <div className={classes.item}>
+                {
+                    this.props.users.map(item => <div key={item.id} className={classes.userPhoto}>
                         <span>
-                            <div>{item.name}</div>
-                            <div>{item.status}</div>
+                            <div>
+                                <img src={item.photos.small != null ? item.photos.small : userPhoto} />
+                            </div>
+                            <div>
+                                {item.followed
+                                    ? <button onClick={() => { this.props.unfollow(item.id) }}>Follow</button>
+                                    : <button onClick={() => { this.props.follow(item.id) }}>Unfollow</button>}
+                            </div>
                         </span>
+
                         <span>
-                            <div>{"item.location.country"}</div>
-                            <div>{"item.location.city"}</div>
+                            <span>
+                                <div>{item.name}</div>
+                                <div>{item.status}</div>
+                            </span>
+                            <span>
+                                <div>{"item.location.country"}</div>
+                                <div>{"item.location.city"}</div>
+                            </span>
                         </span>
-                    </span>
-                </div>)
-            }
-        </div>)
+                    </div>)
+                }
+            </div>)
+    }
 }
-
-
 

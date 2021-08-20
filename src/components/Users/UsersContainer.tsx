@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { AppStateType } from '../../redux/redux-store';
 import { followUserActionCreator, setUsersActionCreator, unfollowUserActionCreator, UsersType } from '../../redux/users-reducer';
-import { Users } from './Users';
 import { Dispatch } from 'redux'
+import { Users} from './Users';
 
 let mapStateToProps = (state: AppStateType) => {
     return {
