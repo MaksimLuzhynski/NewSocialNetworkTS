@@ -10,13 +10,13 @@ import { Provider } from 'react-redux';
 let rerenderIntireTree = () => {
 
   ReactDOM.render(
-    <React.StrictMode>
+    // <React.StrictMode>             //Почему при использовании строгого режима двойная отрисовка пользователей???                  
       <BrowserRouter>
         <Provider store={store}>
           <App />
         </Provider>
-      </BrowserRouter>
-    </React.StrictMode>,
+      </BrowserRouter>,
+    // </React.StrictMode>,
     document.getElementById('root')
   );
 }

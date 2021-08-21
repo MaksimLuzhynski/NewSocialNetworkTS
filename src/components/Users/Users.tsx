@@ -6,16 +6,14 @@ import userPhoto from '../../assets/images/user.png';
 
 type UsersPropsType = {
     users: Array<UsersType>
-    follow: (userId: number) => void                 
-    unfollow: (userId: number) => void               
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
     setUsers: (users: Array<UsersType>) => void
 }
 
 export class Users extends React.Component<UsersPropsType> {
 
-    constructor(props: UsersPropsType) {
-        super(props);
-
+    componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
             this.props.setUsers(response.data.items)
         });
