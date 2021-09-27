@@ -11,11 +11,11 @@ let rerenderIntireTree = () => {
 
   ReactDOM.render(
     // <React.StrictMode>             //Почему при использовании строгого режима двойная отрисовка пользователей???                  
-      <BrowserRouter>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </BrowserRouter>,
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>,
     // </React.StrictMode>,
     document.getElementById('root')
   );
